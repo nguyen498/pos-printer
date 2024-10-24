@@ -128,7 +128,7 @@ export const printOrderWithHtmlString = async (
   //   `
 
   const options: PosPrintOptions = {
-    preview: true,
+    preview: false,
     margin: '0 0 0 0',
     copies: 1,
     printerName: printer_name,
