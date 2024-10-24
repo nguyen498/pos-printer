@@ -28,12 +28,16 @@ export const printOrder = async (
   }
   const isConnected = await printer.isPrinterConnected()
   if (isConnected) {
+    console.time("total time");
+    console.time("generate print");
     printer.add(Buffer.from(data))
     printer.cut()
     printer.openCashDrawer()
+    console.timeEnd("generate print");
 
     try {
       await printer.execute()
+      console.timeEnd("total time");
       console.log('Print success.')
     } catch (error) {
       console.error('Print error:', error)
