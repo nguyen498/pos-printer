@@ -24,7 +24,7 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-epos-printer": "file:../../../Downloads/electron-epos-printer",
-    "electron-pos-printer": "github:pogofdev/electron-pos-printer#dev",
+    "electron-pos-printer": "file:electron-pos-printer",
     "node-thermal-printer": "^4.4.3",
     "printer": "^0.4.0"
   },

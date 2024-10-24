@@ -191,51 +191,53 @@ app.whenReady().then(() => {
   //       <p>Tổng cộng: $25</p>
   // `
 
-  // const options: PosPrintOptions = {
-  //   preview: false,
-  //   margin: '0 0 0 0',
-  //   copies: 1,
-  //   printerName: '_192_168_50_100',
-  //   timeOutPerLine: 1000,
-  //   pageSize: '80mm',
-  //   // pageSize: { width: 80 * 1000, height: 0 } // Kích thước 80mm x vô hạn (chiều dài tự động)
-  //   silent: true,
-  //   boolean: true,
-  //   printBackground: true,
-  //   pagesPerSheet:2
-  // }
+  // // const options: PosPrintOptions = {
+  // //   preview: false,
+  // //   margin: '0 0 0 0',
+  // //   copies: 1,
+  // //   printerName: '_192_168_50_100',
+  // //   timeOutPerLine: 1000,
+  // //   pageSize: '80mm',
+  // //   // pageSize: { width: 80 * 1000, height: 0 } // Kích thước 80mm x vô hạn (chiều dài tự động)
+  // //   silent: true,
+  // //   boolean: true,
+  // //   printBackground: true,
+  // //   pagesPerSheet:2
+  // // }
 
-  // const data: PosPrintData[] = [
-  //   {
-  //     type: 'html',
-  //     value: htmlContent, // file path
-  //     style: {
-  //       width: '100%',
-  //       pageBreakAfter: 'avoid',
-  //       pageBreakBefore: 'avoid',
-  //       pageBreakInside: 'avoid'
-  //     }
-  //     // position of image: 'left' | 'center' | 'right'
-  //     // width: '160px', // width of image in px; default: auto
-  //     // height: '60px' // width of image in px; default: 50 or '50px'
-  //   }
-  // ]
+  // // const data: PosPrintData[] = [
+  // //   {
+  // //     type: 'html',
+  // //     value: htmlContent, // file path
+  // //     style: {
+  // //       width: '100%',
+  // //       pageBreakAfter: 'avoid',
+  // //       pageBreakBefore: 'avoid',
+  // //       pageBreakInside: 'avoid'
+  // //     }
+  // //     // position of image: 'left' | 'center' | 'right'
+  // //     // width: '160px', // width of image in px; default: auto
+  // //     // height: '60px' // width of image in px; default: 50 or '50px'
+  // //   }
+  // // ]
 
-  // PosPrinter.print(data, options).then( async() => {
+  // // PosPrinter.print(data, options).then( async() => {
 
-  //   const printer: ThermalPrinter = new ThermalPrinter({
-  //     type: PrinterTypes.EPSON,
-  //     interface: `printer:${'_192_168_50_100'}`,
-  //     driver: require(electron ? 'electron-printer' : 'printer')
-  //   })
-  //   console.log('cut')
-  //   printer.cut()
-  //   await printer.execute()
-  // }).catch((error) => {
-  //     console.error(error);
-  //   });
+  // //   const printer: ThermalPrinter = new ThermalPrinter({
+  // //     type: PrinterTypes.EPSON,
+  // //     interface: `printer:${'_192_168_50_100'}`,
+  // //     driver: require(electron ? 'electron-printer' : 'printer')
+  // //   })
+  // //   console.log('cut')
+  // //   printer.cut()
+  // //   await printer.execute()
+  // // }).catch((error) => {
+  // //     console.error(error);
+  // //   });
 
-  // printHTML(htmlContent)
+  // // printHTML(htmlContent)
+
+  // printOrderWithHtmlString('_192_168_50_100', htmlContent)
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

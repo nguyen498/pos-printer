@@ -28,16 +28,16 @@ export const printOrder = async (
   }
   const isConnected = await printer.isPrinterConnected()
   if (isConnected) {
-    console.time("total time");
-    console.time("generate print");
+    console.time('total time')
+    console.time('generate print')
     printer.add(Buffer.from(data))
     printer.cut()
     printer.openCashDrawer()
-    console.timeEnd("generate print");
+    console.timeEnd('generate print')
 
     try {
       await printer.execute()
-      console.timeEnd("total time");
+      console.timeEnd('total time')
       console.log('Print success.')
     } catch (error) {
       console.error('Print error:', error)
@@ -84,45 +84,62 @@ export const printOrderWithHtmlString = async (
   //   console.log("Kết nối máy in thất bại")
   // }
   console.log('htmlString', htmlString)
-  // const htmlString1: string = `
-  //       <h1>111Hóa đơn của bạn 11111</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  //        <h1>2222Hóa đơn của bạn22222</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  //        <h1>333333Hóa đơn của bạn33333</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  //         <h1>44444Hóa đơn của bạn444444</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  //         <h1>55555Hóa đơn của bạn555555</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  //         <h1>66666Hóa đơn của bạn66666</h1>
-  //       <p>Sản phẩm 1: $10</p>
-  //       <p>Sản phẩm 2: $15</p>
-  //       <p>Tổng cộng: $25</p>
-  // `
+  //   const htmlString1: string = `
+  //         <h1>111Hóa đơn của bạn 11111</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //          <h1>2222Hóa đơn của bạn22222</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //          <h1>333333Hóa đơn của bạn33333</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //           <h1>44444Hóa đơn của bạn444444</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //           <h1>55555Hóa đơn của bạn555555</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //           <h1>66666Hóa đơn của bạn66666</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $22222</p>
+  // <h1>77777Hóa đơn của bạn77777</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //         <h1>88888Hóa đơn của bạn88888</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //         <h1>9999Hóa đơn của bạn9999</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $25</p>
+  //         <h1>101010Hóa đơn của bạn111111111</h1>
+  //         <p>Sản phẩm 1: $10</p>
+  //         <p>Sản phẩm 2: $15</p>
+  //         <p>Tổng cộng: $333333</p>
+  //   `
 
   const options: PosPrintOptions = {
     preview: true,
     margin: '0 0 0 0',
     copies: 1,
     printerName: printer_name,
-    timeOutPerLine: 1000,
+    timeOutPerLine: 10000,
     pageSize: '80mm',
     // pageSize: { width: 80 * 1000, height: 0 }, // Kích thước 80mm x vô hạn (chiều dài tự động)
     silent: true,
-    boolean: true,
-    printBackground: true,
-    pagesPerSheet: 2
+    boolean: false
+    // pathTemplate: './src/main/print_preview_renderer/index.html'
+    // printBackground: true
+    // pagesPerSheet: 2
   }
 
   const data: PosPrintData[] = [
@@ -140,6 +157,87 @@ export const printOrderWithHtmlString = async (
       // height: '60px' // width of image in px; default: 50 or '50px'
     }
   ]
+
+  // const _data: PosPrintData[] = [
+  //   {
+  //     type: 'table',
+  //     // style the table
+  //     style: { border: '1px solid #ddd' },
+  //     // list of the columns to be rendered in the table header
+  //     tableHeader: ['Animal33333', 'Age33333'],
+  //     // multi dimensional array depicting the rows and columns of the table body
+  //     tableBody: [
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '4'],
+  //       ['Cat', '2'],
+  //       ['Dog', '4'],
+  //       ['Horse', '12'],
+  //       ['Pig', '9999999']
+  //     ],
+  //     // list of columns to be rendered in the table footer
+  //     tableFooter: ['Animal44444', 'Age44444'],
+  //     // custom style for the table header
+  //     tableHeaderStyle: { color: 'black' },
+  //     // custom style for the table body
+  //     tableBodyStyle: { border: '0.5px solid #ddd' },
+  //     // custom style for the table footer
+  //     tableFooterStyle: { color: 'black' }
+  //   }
+  // ]
 
   PosPrinter.print(data, options)
     .then(async () => {
