@@ -112,7 +112,7 @@ export const printOrderWithHtmlString = async (
   // `
 
   const options: PosPrintOptions = {
-    preview: true,
+    preview: false,
     margin: '0 0 0 0',
     copies: 1,
     printerName: printer_name,
@@ -143,14 +143,14 @@ export const printOrderWithHtmlString = async (
 
   PosPrinter.print(data, options)
     .then(async () => {
-      const printer: ThermalPrinter = new ThermalPrinter({
-        type: PrinterTypes.EPSON,
-        interface: `printer:${printer_name}`,
-        driver: require(electron ? 'electron-printer' : 'printer')
-      })
-      console.log('cut')
-      printer.cut()
-      await printer.execute()
+      // const printer: ThermalPrinter = new ThermalPrinter({
+      //   type: PrinterTypes.EPSON,
+      //   interface: `printer:${printer_name}`,
+      //   driver: require(electron ? 'electron-printer' : 'printer')
+      // })
+      // console.log('cut')
+      // printer.cut()
+      // await printer.execute()
     })
     .catch((error) => {
       console.error(error)
